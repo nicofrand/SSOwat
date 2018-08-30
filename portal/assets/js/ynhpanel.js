@@ -121,11 +121,13 @@ var dragg = function(id) {
   this.dragged = false,  // Dragging status
   this.x_pos = 0, this.y_pos = 0, // Stores x & y coordinates of the mouse pointer
   this.x_elem = 0, this.y_elem = 0; // Stores top, left values (edge) of the element
-
-  var _initDrag = function(e){
-    // Prevent firefox native D'n'D behavior
+  
+  // Prevent firefox native D'n'D behavior
+  window.addEvent(elem, 'dragstart', function(e){
     window.eventPreventDefault(e);
+  });
 
+  var _initDrag = function(e){    
     if (e.type === "touchstart"){
       x_pos = e.touches[0].clientX;
       y_pos = e.touches[0].clientY;
